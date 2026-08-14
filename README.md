@@ -1,1 +1,1 @@
-# Shopping Cart from The Odin Project (TOP)Course
+# Shopping Cart from The Odin Project (TOP) Course
