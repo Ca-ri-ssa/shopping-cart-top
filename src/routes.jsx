@@ -2,6 +2,7 @@ import App from "./App.jsx";
 import CartPage from "./pages/CartPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
 
@@ -32,6 +33,10 @@ const routes = [
             {
                 path: "cart",
                 element: <CartPage />
+            },
+            {
+                path: "login",
+                element: <LoginPage />
             }
         ]
     },
