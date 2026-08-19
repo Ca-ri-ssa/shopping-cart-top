@@ -1,6 +1,5 @@
 import axios from "axios";
-
-const BASE_URL = 'https://fakestoreapi.com';
+import { BASE_URL, USER_ID_KEY } from "./config";
 
 const apiClient = axios.create({
     baseURL : BASE_URL,
@@ -12,10 +11,10 @@ const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
     (config) => {
-        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem(USER_ID_KEY);
 
-        if (token) {
-            config.headers.set('Authorization', `Bearer ${token}`);
+        if (userId) {
+            config.headers.set('X-User-Id', userId);
         }
 
         console.log(`[Request Outgoing] ${config.method?.toUpperCase()} -> ${config.url}`);
@@ -33,8 +32,7 @@ apiClient.interceptors.response.use(
     },
     (error) => {
         if (error.response?.status === 401) {
-            localStorage.removeItem('token');
-            window.location.href = '/login';
+            localStorage.removeItem(USER_ID_KEY);
         }
         return  Promise.reject(error);
     }

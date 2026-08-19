@@ -1,15 +1,19 @@
-/* https://maketintsandshades.com/#colors=ee26c3&hashtag=1&steps=20 */
+/* https://maketintsandshades.com/#colors=ee26c3,a61b1b&hashtag=1&steps=20 */
 :root {
   --font: "Outfit", sans serif;
   --color-primary: #ee26c3;
+  --color-error: #a61b1b;
   --nav-bg: var(--color-primary);
   --nav-active: #f151cf;
   --color-text: var(--color-primary);
   --color-on-text: white;
   --color-bg: #fef4fc;
   --color-container: white;
-  /* TODO: tentuin yg benar */
   --padding-pages: 20px 40px;
+  --bar-corner-radius: 8px;
+  --bar-border: 2px solid transparent;
+  --bar-padding: 8px;
+  --container-radius: 16px;
 }
 
 *,
@@ -65,6 +69,16 @@ nav div a.active {
   background-color: var(--nav-active);
 }
 
+.btn-logout {
+  background-color: transparent;
+  padding: 6px 8px;
+  color: var(--color-on-text);
+  cursor: pointer;
+  font-family: var(--font);
+  border-color: transparent;
+  font-size: 16px;
+}
+
 #home {
   padding: var(--padding-pages);
 }
@@ -76,7 +90,7 @@ nav div a.active {
   background-color: var(--color-container);
   color: var(--color-text);
   padding: 28px;
-  border-radius: 16px;
+  border-radius: var(--container-radius);
   text-decoration: none;
   border: 2px solid transparent;
 }
@@ -89,4 +103,96 @@ nav div a.active {
   display: grid;
   gap: 16px;
   grid-template-columns: repeat(4, 1fr);
+}
+
+.loading-bar {
+  display: flex;
+  background-color: var(--color-container);
+  color: var(--color-primary);
+  text-align: start;
+  padding: var(--bar-padding);
+  border: var(--bar-border);
+  border-color: var(--color-primary);
+  border-radius: var(--bar-corner-radius);
+}
+
+.error-bar {
+  margin-top: 8px;
+  display: flex;
+  background-color: var(--color-error);
+  color: var(--color-on-text);
+  text-align: start;
+  padding: var(--bar-padding);
+  border: var(--bar-border);
+  border-radius: var(--bar-corner-radius);
+}
+
+.show-toast {
+  display: flex;
+  background-color: var(--color-primary);
+  color: var(--color-on-text);
+  text-align: start;
+  padding: var(--bar-padding);
+  border: var(--bar-border);
+  border-radius: var(--bar-corner-radius);
+}
+
+#login {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login h1 {
+  text-align: center;
+}
+
+#login form {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: var(--color-container);
+  color: var(--color-primary);
+  padding: 40px;
+  border-radius: 16px;
+}
+
+#login button {
+  margin-top: 16px;
+  font-family: var(--font);
+  background-color: var(--color-primary);
+  color: var(--color-on-text);
+  padding-block: 8px;
+  font-size: 16px;
+  border: var(--bar-border);
+  border-radius: var(--bar-corner-radius);
+  cursor: pointer;
+}
+
+.input-label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label label {
+  font-weight: bold;
+}
+
+.input-label input {
+  min-width: 300px;
+  font-size: 16px;
+  padding: 12px 8px;
+  color: var(--color-primary);
+  border-radius: var(--bar-corner-radius);
+  border: 2px solid var(--color-primary);
+}
+
+.input-label input:focus {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  outline: none;
 }

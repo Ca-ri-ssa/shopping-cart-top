@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage.jsx";
 import LoginPage from "./pages/LoginPage.jsx";
 import ProductDetail from "./pages/ProductDetail.jsx";
 import ProductPage from "./pages/ProductPage.jsx";
+import SignUpPage from "./pages/SignUpPage.jsx";
 
 // TODO: create route
 const routes = [
@@ -37,6 +38,10 @@ const routes = [
             {
                 path: "login",
                 element: <LoginPage />
+            },
+            {
+                path: "signup",
+                element: <SignUpPage />
             }
         ]
     },
