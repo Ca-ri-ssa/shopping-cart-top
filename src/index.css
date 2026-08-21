@@ -1,19 +1,23 @@
-/* https://maketintsandshades.com/#colors=ee26c3,a61b1b&hashtag=1&steps=20 */
+/* https://maketintsandshades.com/#colors=ee26c3,ed2626&hashtag=0&steps=20 */
 :root {
   --font: "Outfit", sans serif;
   --color-primary: #ee26c3;
-  --color-error: #a61b1b;
+  --color-error: #c92020;
   --nav-bg: var(--color-primary);
   --nav-active: #f151cf;
   --color-text: var(--color-primary);
   --color-on-text: white;
   --color-bg: #fef4fc;
   --color-container: white;
-  --padding-pages: 20px 40px;
+  --padding-pages: 20px 40px 40px 40px;
   --bar-corner-radius: 8px;
   --bar-border: 2px solid transparent;
-  --bar-padding: 8px;
+  --bar-padding: 12px 16px;
   --container-radius: 16px;
+  --container-box-shadow: 0 4px 6px -1px #ee26c330, 0 2px 4px -2px #ee26c330;
+  --link-color: #2668ed;
+  --link-visited-color: #8a26ed;
+  --button-padding-block: 8px;
 }
 
 *,
@@ -33,6 +37,14 @@ body {
 
 h1, h2, h3, p {
   margin: 0;
+}
+
+.link { 
+  color: var(--link-color);
+}
+
+.link:visited {
+  color: var(--link-visited-color)
 }
 
 nav {
@@ -79,8 +91,46 @@ nav div a.active {
   font-size: 16px;
 }
 
-#home {
+#home,
+#sign-up {
   padding: var(--padding-pages);
+}
+
+#hero {
+  min-height: 100vh;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-inline: 40px;
+}
+
+.hero-card {
+  width: 100%;
+  padding: 164px 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  
+  background-blend-mode: multiply;
+  background-color: #ee26c350;
+  background-image: url(https://images.unsplash.com/photo-1569388330292-79cc1ec67270?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+  color: var(--color-on-text);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: var(--container-radius);
+  text-align: center;
+  text-shadow: 1px 2px 2px #00000050;
+}
+
+#home {
+  display: flex;
+  flex-direction: column;
 }
 
 .product-container {
@@ -92,11 +142,10 @@ nav div a.active {
   padding: 28px;
   border-radius: var(--container-radius);
   text-decoration: none;
-  border: 2px solid transparent;
 }
 
 .product-container:hover {
-  border: 2px solid var(--color-primary);
+  box-shadow: var(--container-box-shadow);
 }
 
 .product-grid {
@@ -117,7 +166,7 @@ nav div a.active {
 }
 
 .error-bar {
-  margin-top: 8px;
+  margin-top: 16px;
   display: flex;
   background-color: var(--color-error);
   color: var(--color-on-text);
@@ -137,7 +186,62 @@ nav div a.active {
   border-radius: var(--bar-corner-radius);
 }
 
-#login {
+.btn {
+  padding-block: var(--button-padding-block);
+  color: var(--color-on-text);
+  background-color: var(--color-primary);
+  font-family: var(--font);
+  cursor: pointer;
+  border: none;
+  font-size: 20px;
+  border-radius: var(--bar-corner-radius);
+}
+
+.btn:hover {
+  background-color: #be1e9c;
+}
+
+.search-product {
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 8px;
+  color: var(--color-primary);
+  border-radius: var(--bar-corner-radius);
+  border: 2px solid var(--color-primary);
+}
+
+.search-product:focus {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  box-shadow: 0px 0px 4px 2px #ee26c350;
+  outline: none;
+}
+
+.search-product::placeholder {
+  color: #ee26c390;
+}
+
+#error{
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  background-color: var(--color-primary);
+  padding-block: 40px;
+  color: var(--color-on-text);
+  text-align: center;
+}
+
+/* .auth {
   display: flex;
   min-height: 100vh;
   flex-direction: column;
@@ -145,11 +249,11 @@ nav div a.active {
   align-items: center;
 }
 
-#login h1 {
+.auth h1 {
   text-align: center;
 }
 
-#login form {
+.auth form {
   margin-top: 40px;
   display: flex;
   flex-direction: column;
@@ -158,9 +262,10 @@ nav div a.active {
   color: var(--color-primary);
   padding: 40px;
   border-radius: 16px;
+  box-shadow: var(--container-box-shadow);
 }
 
-#login button {
+.auth .btn-submit {
   margin-top: 16px;
   font-family: var(--font);
   background-color: var(--color-primary);
@@ -194,5 +299,36 @@ nav div a.active {
 .input-label input:focus {
   border-color: var(--color-primary);
   color: var(--color-primary);
+  box-shadow: 0px 0px 4px 2px #ee26c350;
   outline: none;
 }
+
+.input-field-password { 
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: start;
+}
+
+label.toogle-password {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+}
+
+.toogle-password span {
+  font-weight: normal;
+}
+
+.toogle-password input[type="checkbox"] {
+  min-width: unset;
+  width: auto;
+  margin: 0;
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.toogle-password input[type="checkbox"]:focus {
+  box-shadow: none;
+} */

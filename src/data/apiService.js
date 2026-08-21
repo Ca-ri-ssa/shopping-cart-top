@@ -1,4 +1,4 @@
-import apiClient from "./apiClient";
+import apiClient from "./apiClient.js";
 
 const apiService = {
     getAllProduct: () => apiClient.get('/products'),

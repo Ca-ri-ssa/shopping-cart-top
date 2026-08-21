@@ -21,6 +21,7 @@ const LoginPage = () => {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e) => {
         setCredential({
@@ -63,7 +64,7 @@ const LoginPage = () => {
 
     return (
         <>
-            <section id="login">
+            <section id="login" className="auth">
                 <h1>Login</h1>
 
                 {error && <ErrorBar text={error} />}
@@ -83,25 +84,34 @@ const LoginPage = () => {
 
                     <div className="input-label">
                         <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
+                        <div className="input-field-password">
+                            <input
+                            type={showPassword ? "text" : "password"}
                             id="password"
                             name="password"
                             value={credential.password}
                             onChange={handleChange}
-                            required
-                        />
+                            required />
+                            
+                            <label className="toogle-password">
+                                <input
+                                type="checkbox"
+                                checked={showPassword}
+                                onChange={(e) => setShowPassword(e.target.checked)}/>
+                                <span style={{ fontSize: "14px" }}>Show password</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <button type="submit" disabled={loading}>
+                    <button type="submit" disabled={loading} className="btn-submit">
                         {loading ? 'Logging in...' : 'Login'}
                     </button>
 
-                    <p style={{ textAlign: "center" }}>Don't have account? let's <a href="/signup">Sign Up</a></p>
+                    <p style={{ textAlign: "center" }}>Don't have account? let's <a href="/signup" className="link">Sign Up</a></p>
                 </form>
             </section>
         </>
-    )
+    );
 };
 
 export default LoginPage;

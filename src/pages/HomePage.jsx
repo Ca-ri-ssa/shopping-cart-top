@@ -1,26 +1,79 @@
 import { useEffect, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
 import apiService from "../data/apiService";
+import { Button } from "../components/Button";
+import { ErrorBar } from "../components/StatusBar";
 
-// TODO: this is store Home Page
 const HomePage = () => {
     const [products, setProducts] = useState([]);
+    const [queryInput, setQueryInput] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        apiService.getAllProduct()
-            .then((data) => setProducts(data))
-            .catch((err) => console.error(err))
+        const fetchProduct = async () => {
+            try {
+                const data = await apiService.getAllProduct();
+                setProducts(data);
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchProduct();
     }, []);
+    
+    const searchButton = () => {
+        setSearchQuery(queryInput);
+    };
+
+    const handleKeyDown = (e) => {
+        if (e.key === "Enter") {
+            searchButton();
+        };
+    };
+
+    const searchedProduct = products.filter((item) => 
+        item.title?.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
+    const showError = searchedProduct.length === 0 && searchQuery.trim() !== "";
 
     return (
-        <section id="home">
-            <h1>Home</h1>
-            <div className="product-grid">
-                {products.map((item) => (
-                    <ProductContainer key={item.id} product={item}/>
-                ))}
-            </div>
-        </section>
+        <>
+            <section id="hero">
+                <div className="hero-card">
+                    <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+                        <h1 style={{ fontSize: "64px" }}>Welcome to Shopping Cart!</h1>
+                        <p style={{ fontSize: "32px" }}>Browse your favorite product and add it to the cart 🛒</p>
+                    </div>
+                    <Button fontSize={20} width={"fit"} paddingInline={32} text={"Let's Browse"} />
+                </div>
+            </section>
+
+            <section id="home" style={{ paddingTop: "0" }}>
+                <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
+                    <input
+                    type="text"
+                    value={queryInput}
+                    onChange={(e) => setQueryInput(e.target.value)}
+                    placeholder="Search product"
+                    className="search-product"
+                    onKeyDown={handleKeyDown}
+                    />
+                    <Button width={"fit"} text={"Search"} paddingInline={16} action={searchButton} />
+                </div>
+
+                {showError && <ErrorBar text={`${searchQuery} is unavailable`} />}
+
+                <div style={{ marginTop: "20px" }} className="product-grid">
+                    { 
+                        searchedProduct.map((item) => (
+                            <ProductContainer key={item.id} product={item}/>
+                        )) 
+                    }
+                </div>
+            </section>
+        </>
     )
 };
 
