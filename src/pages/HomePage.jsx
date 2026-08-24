@@ -1,26 +1,13 @@
-import { useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
-import apiService from "../data/apiService";
 import { Button } from "../components/Button";
 import { ErrorBar } from "../components/StatusBar";
+import { ProductContext } from "../components/ProductContext";
 
 const HomePage = () => {
-    const [products, setProducts] = useState([]);
+    const { products } = useContext(ProductContext);
     const [queryInput, setQueryInput] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
-
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const data = await apiService.getAllProduct();
-                setProducts(data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchProduct();
-    }, []);
     
     const searchButton = () => {
         setSearchQuery(queryInput);

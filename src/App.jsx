@@ -2,6 +2,7 @@ import './index.css'
 import Navigation from './components/Navigation.jsx'
 import { Outlet } from 'react-router'
 import Footer from './components/Footer.jsx'
+import ProductProvider from './components/ProductContext.jsx'
 
 function App() {
   // const [session, setSession] = useState(true);
@@ -26,9 +27,11 @@ function App() {
   return (
     <>
       {/* <Navigation isLogged={session} onLogOut={logOut}/> */}
-      <Navigation />
-      <Outlet />
-      <Footer />
+      <ProductProvider>
+        <Navigation />
+        <Outlet />
+        <Footer />
+      </ProductProvider>
     </>
   )
 }

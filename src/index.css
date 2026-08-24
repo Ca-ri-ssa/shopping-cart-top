@@ -92,6 +92,7 @@ nav div a.active {
 }
 
 #home,
+#product-detail,
 #sign-up {
   padding: var(--padding-pages);
 }
@@ -219,6 +220,25 @@ nav div a.active {
 
 .search-product::placeholder {
   color: #ee26c390;
+}
+
+#product-detail {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+#product-detail img {
+  width: 400px;
+  height: 400px;
+  object-position: center;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+#product-detail aside {
+  width: 100%;
 }
 
 #error{
