@@ -3,6 +3,7 @@ import Navigation from './components/Navigation.jsx'
 import { Outlet } from 'react-router'
 import Footer from './components/Footer.jsx'
 import ProductProvider from './components/ProductContext.jsx'
+import CartProvider from './components/CartContext.jsx'
 
 function App() {
   // const [session, setSession] = useState(true);
@@ -28,9 +29,11 @@ function App() {
     <>
       {/* <Navigation isLogged={session} onLogOut={logOut}/> */}
       <ProductProvider>
-        <Navigation />
-        <Outlet />
-        <Footer />
+        <CartProvider>
+          <Navigation />
+          <Outlet />
+          <Footer />
+        </CartProvider>
       </ProductProvider>
     </>
   )
