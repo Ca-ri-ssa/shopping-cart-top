@@ -30,9 +30,13 @@ function App() {
       {/* <Navigation isLogged={session} onLogOut={logOut}/> */}
       <ProductProvider>
         <CartProvider>
-          <Navigation />
-          <Outlet />
-          <Footer />
+          <div className='app-layout'>
+            <Navigation />
+            <main className='main-content'>
+              <Outlet />
+            </main>
+            <Footer />
+          </div>
         </CartProvider>
       </ProductProvider>
     </>

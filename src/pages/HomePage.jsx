@@ -3,6 +3,7 @@ import ProductContainer from "../components/ProductContainer";
 import { Button } from "../components/Button";
 import { ErrorBar } from "../components/StatusBar";
 import { ProductContext } from "../components/ProductContext";
+import NewsTicker from "../components/NewsTicker";
 
 const HomePage = () => {
     const { products } = useContext(ProductContext);
@@ -27,6 +28,7 @@ const HomePage = () => {
 
     return (
         <>
+            <NewsTicker />
             <section id="hero">
                 <div className="hero-card">
                     <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>

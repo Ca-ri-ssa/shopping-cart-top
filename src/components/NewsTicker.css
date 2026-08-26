@@ -1,0 +1,39 @@
+.ticker-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: black;
+    color: white;
+    padding: 12px 0;
+    overflow: hidden;
+}
+
+.ticker-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: max-content;
+    animation: scroll-left 25s linear infinite;
+    /* INGAT! hapus ini setelah selesai semua */
+    animation-play-state: paused;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.ticker-wrapper:hover {
+    animation-play-state: paused;
+    cursor: default;
+}
+
+@keyframes scroll-left {
+    0% {
+        transform: translateX(100vw);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
