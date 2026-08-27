@@ -1,20 +1,32 @@
 import { useParams } from "react-router";
 import { ProductContext } from "../components/ProductContext";
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
+import { CartContext } from "../components/CartContext";
 
 const ProductDetailPage = () => {
     const { id } = useParams();
     const { products } = useContext(ProductContext);
+    const { cartItems, addToCart, updateCart } = useContext(CartContext);
     const imgRef = useRef(null);
 
-    // TODO: lengkapi
-
     const productDetail = products.find((item) => {
-        return item.id === parseInt(id);
+        return item.id === parseInt(id, 10);
     });
 
-    console.log(id);
-    console.log(productDetail);
+    const findCartItem = cartItems.find((item) => item.id === productDetail?.id);
+    const isInCart = Boolean(findCartItem);
+
+    const [quantity, setQuantity] = useState(findCartItem ? findCartItem.quantity : 0);
+
+    useEffect(() => {
+        if (findCartItem) {
+            setQuantity(findCartItem.quantity);
+        }
+    }, [findCartItem?.quantity]);
+
+    useEffect(() => {
+        console.log("Current Cart Items:", JSON.stringify(cartItems, null, 2));
+    }, [cartItems]);
 
     if (!productDetail) {
         return <h2>Loading product details...</h2>;
@@ -38,6 +50,29 @@ const ProductDetailPage = () => {
         }
     };
 
+    const onAdd = () => {
+        setQuantity((prev) => prev + 1);
+    }
+
+    const onReduce = () => {
+        setQuantity((prev) => Math.max(0, prev - 1));
+    }
+
+    const onHandleChange = (e) => {
+        const val = parseInt(e.target.value, 10);
+        setQuantity(isNaN(val) ? 0 : Math.max(0, val));
+    }
+    
+    const handleCartSubmit = () => {
+        if (quantity === 0 && isInCart) {
+            updateCart(productDetail.id, 0);
+        } else if (isInCart) {
+            updateCart(productDetail.id, quantity);
+        } else if (quantity > 0) {
+            addToCart(productDetail, quantity);
+        }
+    }
+
     return (
         <>
          <section id="product-detail">
@@ -48,19 +83,35 @@ const ProductDetailPage = () => {
             </div>
             <aside>
                 <h1>{productDetail.title}</h1>
+                <p style={{ fontSize: '14px'}}>
+                    {productDetail.category}
+                </p>
 
-                <div style={{ display: 'flex', flexDirection: 'row', gap: '4px', alignItems: 'center', marginTop: '8px' }}>
-                    <p>⭐</p>
-                    <p>{productDetail.rating.rate}</p>
+                <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', marginTop: '8px' }}>
+                    <p style={{ fontSize: '24px' }}>${productDetail.price}</p>
+                    <p>⭐ {productDetail.rating.rate}</p>
                 </div>
 
                 <p style={{ fontWeight: 'bold', margin: '20px 0 8px 0' }}>Description:</p>
                 <p>{productDetail.description}</p>
 
-                <p style={{ fontWeight: 'bold', margin: '20px 0 8px 0' }}>Price:</p>
-                <p style={{ fontWeight: 'bold', fontSize: '24px' }}>${productDetail.price}</p>
+                <div style={{ display:'flex', flexDirection: 'row', gap: '16px', marginTop: '24px', alignItems:'stretch' }}>
+                    <div className="quantity">
+                        <button style={{ borderRadius: '8px 0 0 8px' }} className="btn-quantity" onClick={onReduce} disabled={quantity <= 0}>–</button>
+                        <input
+                        id="quantity"
+                        type="text"
+                        value={quantity}
+                        onChange={onHandleChange}
+                        />
+                        <button style={{ borderRadius: '0 8px 8px 0' }} className="btn-quantity" onClick={onAdd}>+</button>
+                    </div>
 
-                {/* TODO: add quantity and add to cart btn */}
+                    <button className="btn-submit-cart" onClick={handleCartSubmit} disabled={quantity === 0 && !isInCart}>
+                        {isInCart ? (quantity === 0 ? "Remove From Cart" : "Update Cart") : "Add to Cart" }
+                    </button>
+                </div>
+                
             </aside>
          </section>
         </>

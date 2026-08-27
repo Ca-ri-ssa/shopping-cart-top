@@ -7,7 +7,6 @@ const ProductContainer = ({ product }) => {
         h3 : {
             width: '100%',
             marginTop: '16px',
-            marginBottom: '8px',
             overflow: 'hidden',
             display: '-webkit-box',
             WebkitBoxOrient: 'vertical',
@@ -16,6 +15,12 @@ const ProductContainer = ({ product }) => {
         p: {
             width: '100%',
             textAlign: 'end',
+        },
+        category: {
+            fontSize: '12px',
+            textAlign: 'start',
+            marginBottom: '8px',
+            width: '100%',
         }
     };
 
@@ -23,6 +28,7 @@ const ProductContainer = ({ product }) => {
         <a className="product-container" href={`/products/${product.id}`}>
             <img style={styles.image} src={product.image} alt={product.title} />
             <h3 style={styles.h3} >{product.title}</h3>
+            <p style={styles.category}>{product.category}</p>
             <p style={styles.p} >${product.price}</p>
         </a>
     )

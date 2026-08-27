@@ -18,6 +18,7 @@
   --link-color: #2668ed;
   --link-visited-color: #8a26ed;
   --button-padding-block: 8px;
+  --button-color-hover: #be1e9c;
 }
 
 *,
@@ -270,6 +271,67 @@ nav div a.active {
 
 #product-detail aside {
   width: 100%;
+}
+
+.quantity {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.quantity input {
+  width: 64px;
+  font-size: 16px;
+  padding: 8px 2px;
+  color: var(--color-primary);
+  border-block: 2px solid var(--color-primary);
+  border-inline: none;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.quantity input:focus {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  outline: none;
+}
+
+.btn-quantity {
+  flex: 1;
+  width: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-on-text);
+  border: none;
+  font-weight: bold;
+}
+
+.btn-quantity:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-quantity:hover {
+  background-color: var(--button-color-hover);
+}
+
+.btn-submit-cart {
+  padding: 0 40px;
+  background-color: var(--color-primary);
+  color: var(--color-on-text);
+  border: none;
+  border-radius: var(--bar-corner-radius);
+  cursor: pointer;
+}
+
+.btn-submit-cart:hover {
+  background-color: var(--button-color-hover);
+}
+
+.btn-submit-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 #error{

@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 const Navigation = () => {
     return (
         <nav>
-            <h1>Shopping Cart</h1>
+            <NavLink to="/" style={{ textDecoration: 'none', color: 'var(--color-on-text)' }}><h1>Shopping Cart</h1></NavLink>
             <div>
                 <NavLink to="/" end>Home</NavLink>
                 <NavLink to="/cart">Cart</NavLink>
