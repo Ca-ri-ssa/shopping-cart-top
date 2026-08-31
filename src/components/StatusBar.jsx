@@ -14,10 +14,11 @@ const ErrorBar = ({ text }) => {
     );
 };
 
-const ShowToast = ({ text, duration = 3000, onClose }) => {
+const ShowToast = ({ marginTop = 0, text, duration = 3000, onClose }) => {
     const [visible, setVisible] = useState(true);
     
     useEffect(() => {
+        setVisible(true);
         const timer = setTimeout(() => {
             setVisible(false)
             if (onClose) onClose();
@@ -29,7 +30,7 @@ const ShowToast = ({ text, duration = 3000, onClose }) => {
     if (!visible || !text) return null;
     
     return (
-        <div className="show-toast">{text}</div>
+        <div style={{ marginTop: marginTop + 'px' }} className="show-toast">{text}</div>
     )
 };
 

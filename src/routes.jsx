@@ -23,15 +23,6 @@ const routes = [
                 path: "cart",
                 element: <CartPage />
             },
-            // FIX: Omit login and sign up
-            // {
-            //     path: "login",
-            //     element: <LoginPage />
-            // },
-            // {
-            //     path: "signup",
-            //     element: <SignUpPage />
-            // }
         ]
     },
     {

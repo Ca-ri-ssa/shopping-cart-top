@@ -1,4 +1,7 @@
 /* https://maketintsandshades.com/#colors=ee26c3,ed2626&hashtag=0&steps=20 */
+
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0");
+
 :root {
   --font: "Outfit", sans serif;
   --color-primary: #ee26c3;
@@ -19,6 +22,7 @@
   --link-visited-color: #8a26ed;
   --button-padding-block: 8px;
   --button-color-hover: #be1e9c;
+  --rating-star-color: #edd926;
 }
 
 *,
@@ -104,7 +108,8 @@ nav div a.active {
 
 #home,
 #product-detail,
-#sign-up {
+#sign-up,
+#cart {
   padding: var(--padding-pages);
 }
 
@@ -190,6 +195,7 @@ nav div a.active {
 
 .show-toast {
   display: flex;
+  flex-wrap: wrap;
   background-color: var(--color-primary);
   color: var(--color-on-text);
   text-align: start;
@@ -334,6 +340,70 @@ nav div a.active {
   cursor: not-allowed;
 }
 
+#cart {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  gap: 80px;
+}
+
+.cart-container {
+  width: 640px;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  background-color: var(--color-container);
+  padding: 20px;
+  border-radius: var(--container-radius);
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+.cart-container:hover {
+  box-shadow: var(--container-box-shadow);
+}
+
+.cart-img-container {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  padding: 8px;
+  box-sizing: border-box;
+  border-radius: var(--container-radius);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cart-img-container img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.btn-cart-remove {
+  align-self: center;
+  margin-left: auto; 
+  background: transparent;
+  border: none;
+}
+
+.btn-cart-remove span {
+  font-size: 40px;
+  color: var(--color-error);
+  cursor: pointer;
+}
+
+.btn-cart-remove span:hover {
+  color: #f04747;
+}
+
 #error{
   width: 100%;
   min-height: 100vh;
@@ -353,95 +423,3 @@ footer {
   color: var(--color-on-text);
   text-align: center;
 }
-
-/* .auth {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.auth h1 {
-  text-align: center;
-}
-
-.auth form {
-  margin-top: 40px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  background-color: var(--color-container);
-  color: var(--color-primary);
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: var(--container-box-shadow);
-}
-
-.auth .btn-submit {
-  margin-top: 16px;
-  font-family: var(--font);
-  background-color: var(--color-primary);
-  color: var(--color-on-text);
-  padding-block: 8px;
-  font-size: 16px;
-  border: var(--bar-border);
-  border-radius: var(--bar-corner-radius);
-  cursor: pointer;
-}
-
-.input-label {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.input-label label {
-  font-weight: bold;
-}
-
-.input-label input {
-  min-width: 300px;
-  font-size: 16px;
-  padding: 12px 8px;
-  color: var(--color-primary);
-  border-radius: var(--bar-corner-radius);
-  border: 2px solid var(--color-primary);
-}
-
-.input-label input:focus {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  box-shadow: 0px 0px 4px 2px #ee26c350;
-  outline: none;
-}
-
-.input-field-password { 
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: start;
-}
-
-label.toogle-password {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 4px;
-}
-
-.toogle-password span {
-  font-weight: normal;
-}
-
-.toogle-password input[type="checkbox"] {
-  min-width: unset;
-  width: auto;
-  margin: 0;
-  cursor: pointer;
-  accent-color: var(--color-primary);
-}
-
-.toogle-password input[type="checkbox"]:focus {
-  box-shadow: none;
-} */

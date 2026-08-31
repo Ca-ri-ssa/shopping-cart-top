@@ -89,7 +89,7 @@ const ProductDetailPage = () => {
 
                 <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', marginTop: '8px' }}>
                     <p style={{ fontSize: '24px' }}>${productDetail.price}</p>
-                    <p>⭐ {productDetail.rating.rate}</p>
+                    <p style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-rounded" style={{ color: 'var(--rating-star-color)' }}>star</span> {productDetail.rating.rate}</p>
                 </div>
 
                 <p style={{ fontWeight: 'bold', margin: '20px 0 8px 0' }}>Description:</p>
@@ -97,14 +97,22 @@ const ProductDetailPage = () => {
 
                 <div style={{ display:'flex', flexDirection: 'row', gap: '16px', marginTop: '24px', alignItems:'stretch' }}>
                     <div className="quantity">
-                        <button style={{ borderRadius: '8px 0 0 8px' }} className="btn-quantity" onClick={onReduce} disabled={quantity <= 0}>–</button>
+                        <button style={{ borderRadius: '8px 0 0 8px', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="btn-quantity" onClick={onReduce} disabled={quantity <= 0}>
+                            <span className="material-symbols-rounded">
+                                remove
+                            </span>
+                        </button>
                         <input
                         id="quantity"
                         type="text"
                         value={quantity}
                         onChange={onHandleChange}
                         />
-                        <button style={{ borderRadius: '0 8px 8px 0' }} className="btn-quantity" onClick={onAdd}>+</button>
+                        <button style={{ borderRadius: '0 8px 8px 0', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="btn-quantity" onClick={onAdd}>
+                            <span className="material-symbols-rounded">
+                                add
+                            </span>
+                        </button>
                     </div>
 
                     <button className="btn-submit-cart" onClick={handleCartSubmit} disabled={quantity === 0 && !isInCart}>
