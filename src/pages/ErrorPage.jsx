@@ -1,6 +1,5 @@
 import { isRouteErrorResponse, useRouteError } from "react-router";
 
-// TODO: Error Page
 const ErrorPage = () => {
     const errorStatus = useRouteError();
 

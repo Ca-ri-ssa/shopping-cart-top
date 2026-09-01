@@ -1,21 +1,48 @@
-import { useContext, useState } from "react";
-import { CartContext } from "../components/CartContext";
+import { useContext, useEffect, useState } from "react";
+import { CartContext } from "../context/CartContext";
 import CartContainer from "../components/CartContainer";
-import { ShowToast } from "../components/StatusBar";
+import { Link } from "react-router";
+import { formatPrice } from "../utils/utils";
 
 const CartPage = () => {
     const { cartItems, removeCartItem } = useContext(CartContext);
-    const [ toast, setToast ] = useState(null);
+    const [toast, setToast] = useState(null);
 
-    // TODO 1: add display for 0 length items, having a message to encourage user to add cart item
-    // TODO 2: ensure show toast is displayed correctly (also the styling and position)
-    // TODO 3: put a subtotal by using useMemo()
+    useEffect(() => {
+        if(!toast) return;
+        const timer = setTimeout(() => {
+            setToast(null);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [toast]);
+
+    const showToast = (title, msg) => {
+        setToast({
+            title: title,
+            msg: msg
+        })
+    };
+
     const handleRemove = (item) => {
         removeCartItem(item.id, item.title);
-        setToast(
-            <>
-                <b style={{ marginRight: '4px' }}>{item.title}</b>removed from cart
-            </>
+        showToast(item.title, 'has been removed from the cart')
+    };
+
+    const onCheckOut = () => {
+        showToast('Notice:', 'This feature is not implemented yet')
+    };
+
+    const totalItem = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+    const subTotal = cartItems.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+    if(cartItems.length === 0) {
+        return (
+            <section id="no-page">
+                <h1>Your Cart is empty!</h1>
+                <p>Looks like you haven't added anything yet. Let's explore our products!</p>
+                <Link to="/" className="link">Start Shopping</Link>
+            </section>
         );
     }
 
@@ -27,11 +54,21 @@ const CartPage = () => {
                 ))}
             </div>
             
-            <aside>
-                <h1>Total product: {cartItems.length}</h1>
+            <aside className="cart-aside">
+                <h2 style={{ fontWeight: 'normal' }}>
+                    Total cart item: <span style={{ fontWeight: 'bold' }}>{totalItem}</span>
+                </h2>
+                <h2 style={{ fontWeight: 'normal' }}>
+                    Subtotal: <span style={{ fontWeight: 'bold' }}>{formatPrice(subTotal)}</span>
+                </h2>
+                <button style={{ marginTop: '20px' }} className="btn btn-checkout" onClick={onCheckOut}>
+                    Check Out
+                </button>
 
                 { toast && (
-                    <ShowToast key={Date.now()} marginTop={20} text={toast} onClose={() => setToast(null)}/>
+                    <p style={{ marginTop: '16px', color: 'var(--color-error)' }}>
+                        <b>{toast.title}</b> {toast.msg}
+                    </p>
                 )}
             </aside>
         </section>

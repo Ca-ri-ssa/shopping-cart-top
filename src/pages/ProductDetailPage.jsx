@@ -1,13 +1,14 @@
-import { useParams } from "react-router";
-import { ProductContext } from "../components/ProductContext";
+import { Link, useParams } from "react-router";
+import { ProductContext } from "../context/ProductContext";
 import { useContext, useEffect, useRef, useState } from "react";
-import { CartContext } from "../components/CartContext";
+import { CartContext } from "../context/CartContext";
 
 const ProductDetailPage = () => {
     const { id } = useParams();
-    const { products } = useContext(ProductContext);
+    const { products, loading, error } = useContext(ProductContext);
     const { cartItems, addToCart, updateCart } = useContext(CartContext);
     const imgRef = useRef(null);
+    const [toast, setToast] = useState(null);
 
     const productDetail = products.find((item) => {
         return item.id === parseInt(id, 10);
@@ -17,6 +18,15 @@ const ProductDetailPage = () => {
     const isInCart = Boolean(findCartItem);
 
     const [quantity, setQuantity] = useState(findCartItem ? findCartItem.quantity : 0);
+    
+    useEffect(() => {
+        if(!toast) return;
+        const timer = setTimeout(() => {
+            setToast(null);
+        }, 2000);
+
+        return () => clearTimeout(timer);
+    }, [toast]);
 
     useEffect(() => {
         if (findCartItem) {
@@ -24,13 +34,37 @@ const ProductDetailPage = () => {
         }
     }, [findCartItem?.quantity]);
 
-    useEffect(() => {
-        console.log("Current Cart Items:", JSON.stringify(cartItems, null, 2));
-    }, [cartItems]);
+    if(loading) {
+         return (
+            <section id="no-page">
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
+                    <div className="loader"></div>
+                    <h1>Loading product...</h1>
+                </div>
+            </section>
+        );
+    };
+
+    if(error) {
+         return (
+            <section id="no-page">
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px' }}>
+                    <h1 style={{ color: 'var(--color-error)' }}>Error: {error}</h1>
+                </div>
+            </section>
+        );
+    }
 
     if (!productDetail) {
-        return <h2>Loading product details...</h2>;
-    }
+        return (
+            <section id="no-page">
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', color: 'var(--color-error)' }}>
+                    <h1>No product available</h1>
+                    <Link to="/" className="link">Go back</Link>
+                </div>
+            </section>
+        );
+    };
 
     const handleMouseMove = (e) => {
         const rect = e.currentTarget.getBoundingClientRect();
@@ -66,12 +100,15 @@ const ProductDetailPage = () => {
     const handleCartSubmit = () => {
         if (quantity === 0 && isInCart) {
             updateCart(productDetail.id, 0);
+            setToast(`Removed from the cart`);
         } else if (isInCart) {
             updateCart(productDetail.id, quantity);
+            setToast(`Quantity updated to ${quantity}`);
         } else if (quantity > 0) {
             addToCart(productDetail, quantity);
+            setToast(`Added to cart`);
         }
-    }
+    };
 
     return (
         <>
@@ -81,12 +118,14 @@ const ProductDetailPage = () => {
             onMouseLeave={handleMouseLeave}>
                 <img ref={imgRef} src={productDetail.image} alt={productDetail.title} />
             </div>
+
             <aside>
                 <h1>{productDetail.title}</h1>
                 <p style={{ fontSize: '14px'}}>
                     {productDetail.category}
                 </p>
 
+                {/* TODO: update price as the quantity change */}
                 <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', marginTop: '8px' }}>
                     <p style={{ fontSize: '24px' }}>${productDetail.price}</p>
                     <p style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-rounded" style={{ color: 'var(--rating-star-color)' }}>star</span> {productDetail.rating.rate}</p>
@@ -115,11 +154,13 @@ const ProductDetailPage = () => {
                         </button>
                     </div>
 
-                    <button className="btn-submit-cart" onClick={handleCartSubmit} disabled={quantity === 0 && !isInCart}>
+                    <button className="btn" onClick={handleCartSubmit} disabled={quantity === 0 && !isInCart}>
                         {isInCart ? (quantity === 0 ? "Remove From Cart" : "Update Cart") : "Add to Cart" }
                     </button>
                 </div>
-                
+                { toast && (
+                    <p style={{ marginTop: '16px' }}>{toast}</p>
+                )}
             </aside>
          </section>
         </>

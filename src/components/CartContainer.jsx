@@ -1,8 +1,12 @@
+import { formatPrice } from "../utils/utils"
+
 const CartContainer = ({ cartItem, onRemove }) => {
     const handleRemoveItem = (e) => {
         e.preventDefault();
         onRemove();
     }
+
+    const totalPrice = cartItem.quantity * cartItem.price;
 
     return (
         <a className="cart-container" href={`/products/${cartItem.id}`}>
@@ -20,7 +24,7 @@ const CartContainer = ({ cartItem, onRemove }) => {
                         </span>
                         ${cartItem.price}
                     </p>
-                    <p style={{ fontWeight: 'bold' }}>${cartItem.quantity * cartItem.price}</p>
+                    <p style={{ fontWeight: 'bold' }}>{formatPrice(totalPrice)}</p>
                 </div>
                 
                 

@@ -2,8 +2,8 @@ import './index.css'
 import Navigation from './components/Navigation.jsx'
 import { Outlet } from 'react-router'
 import Footer from './components/Footer.jsx'
-import ProductProvider from './components/ProductContext.jsx'
-import CartProvider from './components/CartContext.jsx'
+import ProductProvider from './context/ProductContext.jsx'
+import CartProvider from './context/CartContext.jsx'
 
 function App() {
 

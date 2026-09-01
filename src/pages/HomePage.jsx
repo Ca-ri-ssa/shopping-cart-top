@@ -1,12 +1,11 @@
 import { useContext, useState } from "react";
 import ProductContainer from "../components/ProductContainer";
-import { Button } from "../components/Button";
-import { ErrorBar } from "../components/StatusBar";
-import { ProductContext } from "../components/ProductContext";
+import { ProductContext } from "../context/ProductContext";
 import NewsTicker from "../components/NewsTicker";
 
+// TODO: put loading and error mechanism
 const HomePage = () => {
-    const { products } = useContext(ProductContext);
+    const { products, loading, error } = useContext(ProductContext);
     const [queryInput, setQueryInput] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
     
@@ -35,7 +34,7 @@ const HomePage = () => {
                         <h1 style={{ fontSize: "64px" }}>Welcome to Shopping Cart!</h1>
                         <p style={{ fontSize: "32px" }}>Browse your favorite product and add it to the cart 🛒</p>
                     </div>
-                    <Button fontSize={20} width={"fit"} paddingInline={32} text={"Let's Browse"} />
+                    <button style={{ fontSize: '20px', padding: '16px 40px'}} className="btn">Let's Browse</button>
                 </div>
             </section>
 
@@ -49,10 +48,11 @@ const HomePage = () => {
                     className="search-product"
                     onKeyDown={handleKeyDown}
                     />
-                    <Button width={"fit"} text={"Search"} paddingInline={16} action={searchButton} />
+                    <button className="btn" onClick={searchButton}>Search</button>
                 </div>
 
-                {showError && <ErrorBar text={`${searchQuery} is unavailable`} />}
+                {/* TODO: Perbaiki error, jgn pakai status bar lagi */}
+                {/* {showError && <ErrorBar text={`${searchQuery} is unavailable`} />} */}
 
                 <div style={{ marginTop: "20px" }} className="product-grid">
                     { 

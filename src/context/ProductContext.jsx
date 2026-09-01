@@ -5,15 +5,20 @@ const ProductContext = createContext();
 
 const ProductProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
-    // TODO: tambah mekanisme loading dan error
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchProduct = async () => {
             try {
+                setLoading(true);
                 const data = await apiService.getAllProduct();
                 setProducts(data);
             } catch (error) {
                 console.error(error);
+                setError("Failed to fetch products. Please try again later.");
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -21,7 +26,7 @@ const ProductProvider = ({ children }) => {
     }, []);
 
     return (
-        <ProductContext.Provider value={{ products }}>
+        <ProductContext.Provider value={{ products, loading, error }}>
             {children}
         </ProductContext.Provider>
     );

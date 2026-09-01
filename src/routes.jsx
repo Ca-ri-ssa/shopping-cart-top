@@ -4,7 +4,6 @@ import ErrorPage from "./pages/ErrorPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import ProductDetailPage from "./pages/ProductDetailPage.jsx";
 
-// TODO: create route
 const routes = [
     {
         path: "/",
@@ -24,10 +23,6 @@ const routes = [
                 element: <CartPage />
             },
         ]
-    },
-    {
-        path: "*",
-        element: <ErrorPage />
     }
 ];
 

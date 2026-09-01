@@ -14,8 +14,6 @@
     gap: 8px;
     width: max-content;
     animation: scroll-left 25s linear infinite;
-    /* INGAT! hapus ini setelah selesai semua */
-    animation-play-state: paused;
 }
 
 .ticker-item {
