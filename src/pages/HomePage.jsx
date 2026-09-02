@@ -6,11 +6,16 @@ import NewsTicker from "../components/NewsTicker";
 // TODO: put loading and error mechanism
 const HomePage = () => {
     const { products, loading, error } = useContext(ProductContext);
+
     const [queryInput, setQueryInput] = useState("");
     const [searchQuery, setSearchQuery] = useState("");
+
+    const [categoryInput, setCategoryInput] = useState("");
+    const [categorySelected, setCategorySelected] = useState("");
     
     const searchButton = () => {
         setSearchQuery(queryInput);
+        setCategorySelected(categoryInput);
     };
 
     const handleKeyDown = (e) => {
@@ -19,11 +24,20 @@ const HomePage = () => {
         };
     };
 
-    const searchedProduct = products.filter((item) => 
-        item.title?.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    const searchedProduct = products.filter((item) => {
+        const matchSearchQuery = item.title?.toLowerCase().includes(searchQuery.toLowerCase());
+        const matchCategory = 
+            !categorySelected || 
+            categorySelected === "" || 
+            categorySelected === "all" || 
+            item.category === categorySelected;
 
-    const showError = searchedProduct.length === 0 && searchQuery.trim() !== "";
+        return matchSearchQuery && matchCategory;
+    });
+
+    const showSearchNotFound = searchedProduct.length === 0 && searchQuery.trim() !== "";
+    const productCategory = Array.from(new Set(products.map((item) => item.category).filter(Boolean)));
+    const category = ["all", ...productCategory].sort();
 
     return (
         <>
@@ -48,19 +62,48 @@ const HomePage = () => {
                     className="search-product"
                     onKeyDown={handleKeyDown}
                     />
+
+                    <select 
+                    id="category" 
+                    name="category"
+                    value={categoryInput}
+                    onChange={(e) => setCategoryInput(e.target.value)}>
+                        {category.map((item, index) => (
+                            <option key={index} value={item}>{item.charAt(0).toUpperCase() + item.slice(1)}</option>
+                        ))}
+                    </select>
+
                     <button className="btn" onClick={searchButton}>Search</button>
                 </div>
 
-                {/* TODO: Perbaiki error, jgn pakai status bar lagi */}
-                {/* {showError && <ErrorBar text={`${searchQuery} is unavailable`} />} */}
+                { loading && (
+                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", alignItems: 'center', gap: '16px', marginTop: '20px' }}>
+                        <div className="loader"></div>
+                        <h1>Loading product...</h1>
+                    </div>
+                )}
 
-                <div style={{ marginTop: "20px" }} className="product-grid">
+                { error && (
+                    <p style={{ width: "100%", textAlign: "center", color: "var(--color-error)", marginTop: "20px" }}>
+                        Failed to load product, please try again later
+                    </p>
+                )}
+
+                { showSearchNotFound && (
+                    <p style={{ width: "100%", textAlign: "center", color: "var(--color-error)", marginTop: "20px" }}>
+                        <span style={{ fontWeight: "bold" }}>{searchQuery}</span> is unavailable
+                    </p>
+                )}
+
+                {!loading && !error && (
+                    <div style={{ marginTop: "20px" }} className="product-grid">
                     { 
                         searchedProduct.map((item) => (
                             <ProductContainer key={item.id} product={item}/>
                         )) 
                     }
                 </div>
+                )}
             </section>
         </>
     )

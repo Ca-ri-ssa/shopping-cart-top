@@ -3,10 +3,12 @@ import { CartContext } from "../context/CartContext";
 import CartContainer from "../components/CartContainer";
 import { Link } from "react-router";
 import { formatPrice } from "../utils/utils";
+import DialogPopUp from "../components/DialogPopUp";
 
 const CartPage = () => {
     const { cartItems, removeCartItem } = useContext(CartContext);
     const [toast, setToast] = useState(null);
+    const [itemToRemove, setItemToRemove] = useState(null);
 
     useEffect(() => {
         if(!toast) return;
@@ -17,16 +19,29 @@ const CartPage = () => {
         return () => clearTimeout(timer);
     }, [toast]);
 
+    console.log("item to remove:", itemToRemove);
+
     const showToast = (title, msg) => {
         setToast({
             title: title,
             msg: msg
         })
     };
+    
+    const handleOpenDialogRemove = (item) => {
+        setItemToRemove(item);
+    };
 
-    const handleRemove = (item) => {
-        removeCartItem(item.id, item.title);
-        showToast(item.title, 'has been removed from the cart')
+    const handleConfirmDialogRemove = () => {
+        if(itemToRemove) {
+            removeCartItem(itemToRemove.id);
+            showToast(itemToRemove.title, 'has been removed from the cart');
+            setItemToRemove(null);
+        }
+    };
+
+    const handleCloseDialogRemove = () => {
+        setItemToRemove(null)
     };
 
     const onCheckOut = () => {
@@ -50,17 +65,22 @@ const CartPage = () => {
         <section id="cart">
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                 {cartItems.map((item) => (
-                    <CartContainer key={item.id} cartItem={item} onRemove={() => handleRemove(item)}/>
+                    <CartContainer 
+                    key={item.id}
+                    cartItem={item}
+                    onRemove={() => handleOpenDialogRemove(item)}
+                    />
                 ))}
             </div>
             
             <aside className="cart-aside">
-                <h2 style={{ fontWeight: 'normal' }}>
+                <h1 style={{ textAlign: "center", marginBottom: "20px" }}>Summary</h1>
+                <h3 style={{ fontWeight: 'normal' }}>
                     Total cart item: <span style={{ fontWeight: 'bold' }}>{totalItem}</span>
-                </h2>
-                <h2 style={{ fontWeight: 'normal' }}>
+                </h3>
+                <h3 style={{ fontWeight: 'normal' }}>
                     Subtotal: <span style={{ fontWeight: 'bold' }}>{formatPrice(subTotal)}</span>
-                </h2>
+                </h3>
                 <button style={{ marginTop: '20px' }} className="btn btn-checkout" onClick={onCheckOut}>
                     Check Out
                 </button>
@@ -71,6 +91,23 @@ const CartPage = () => {
                     </p>
                 )}
             </aside>
+            
+            {itemToRemove && (
+                <DialogPopUp
+                title="Remove Item"
+                textConfirm="Remove"
+                textClose="No"
+                message={
+                <>
+                Do want to remove{" "}
+                <span style={{ fontWeight: 'bold' }}>{itemToRemove?.title}</span>
+                {" "}from your cart?
+                </>
+                }
+                onConfirm={handleConfirmDialogRemove}
+                onClose={handleCloseDialogRemove}
+                />
+            )}
         </section>
     )
 };

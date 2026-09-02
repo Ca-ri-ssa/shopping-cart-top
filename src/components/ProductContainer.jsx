@@ -28,7 +28,7 @@ const ProductContainer = ({ product }) => {
         <a className="product-container" href={`/products/${product.id}`}>
             <img style={styles.image} src={product.image} alt={product.title} />
             <h3 style={styles.h3} >{product.title}</h3>
-            <p style={styles.category}>{product.category}</p>
+            <p style={styles.category}>{product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
             <p style={styles.p} >${product.price}</p>
         </a>
     )

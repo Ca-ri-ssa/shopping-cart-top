@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router";
 import { ProductContext } from "../context/ProductContext";
 import { useContext, useEffect, useRef, useState } from "react";
 import { CartContext } from "../context/CartContext";
+import { formatPrice } from "../utils/utils";
 
 const ProductDetailPage = () => {
     const { id } = useParams();
@@ -122,12 +123,11 @@ const ProductDetailPage = () => {
             <aside>
                 <h1>{productDetail.title}</h1>
                 <p style={{ fontSize: '14px'}}>
-                    {productDetail.category}
+                    {productDetail.category.charAt(0).toUpperCase() + productDetail.category.slice(1)}
                 </p>
 
-                {/* TODO: update price as the quantity change */}
                 <div style={{ display: 'flex', flexDirection: 'row', gap: '8px', alignItems: 'center', marginTop: '8px' }}>
-                    <p style={{ fontSize: '24px' }}>${productDetail.price}</p>
+                    <p style={{ fontSize: '24px' }}>{formatPrice(productDetail.price)}</p>
                     <p style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><span className="material-symbols-rounded" style={{ color: 'var(--rating-star-color)' }}>star</span> {productDetail.rating.rate}</p>
                 </div>
 
