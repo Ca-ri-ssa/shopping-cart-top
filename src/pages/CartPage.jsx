@@ -63,7 +63,7 @@ const CartPage = () => {
 
     return (
         <section id="cart">
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '640px' }}>
                 {cartItems.map((item) => (
                     <CartContainer 
                     key={item.id}

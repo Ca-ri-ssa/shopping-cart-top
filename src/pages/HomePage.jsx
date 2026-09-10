@@ -45,15 +45,15 @@ const HomePage = () => {
             <section id="hero">
                 <div className="hero-card">
                     <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
-                        <h1 style={{ fontSize: "64px" }}>Welcome to Shopping Cart!</h1>
-                        <p style={{ fontSize: "32px" }}>Browse your favorite product and add it to the cart 🛒</p>
+                        <h1>Welcome to Shopping Cart!</h1>
+                        <p>Browse your favorite product and add it to the cart 🛒</p>
                     </div>
-                    <button style={{ fontSize: '20px', padding: '16px 40px'}} className="btn">Let's Browse</button>
+                    <button className="btn">Let's Browse</button>
                 </div>
             </section>
 
             <section id="home" style={{ paddingTop: "0" }}>
-                <div style={{ display: "flex", flexDirection: "row", gap: "8px" }}>
+                <div className="search-field">
                     <input
                     type="text"
                     value={queryInput}

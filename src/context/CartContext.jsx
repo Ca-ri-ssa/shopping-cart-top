@@ -1,4 +1,4 @@
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { CART_KEY } from "../data/config";
 
 const CartContext = createContext();
@@ -32,6 +32,7 @@ const CartProvider = ({ children }) => {
                 };
                 return updatedItems;
             }
+
             return [...prevItems, {...product, quantity}];
         });
     };

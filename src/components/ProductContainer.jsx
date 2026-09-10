@@ -2,7 +2,7 @@ const ProductContainer = ({ product }) => {
     const styles = {
         image : {
             maxHeight: '100px',
-            borderRadius: '8px'
+            borderRadius: '8px',
         },
         h3 : {
             width: '100%',

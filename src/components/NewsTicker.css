@@ -3,9 +3,10 @@
     align-items: center;
     width: 100%;
     background-color: black;
-    color: white;
+    color: var(--color-on-text);
     padding: 12px 0;
     overflow: hidden;
+    text-wrap: nowrap;
 }
 
 .ticker-wrapper {
