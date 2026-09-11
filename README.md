@@ -3,7 +3,9 @@ This **Shopping Cart** project is built for [The Odin Project](https://www.theod
 
 **Shopping Cart** is an front-end app that use  
 
-<font color="#ee26c3"><b>Tes</b></font>
+| Text align Center | Text align End |
+| :---------------: | -------------: |
+| Book              | Great          |
 
 ## Table of Contents
 - How to Use This Repository
