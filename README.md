@@ -1,15 +1,18 @@
 # Shopping Cart from The Odin Project (TOP) Course
 This **Shopping Cart** project is built for [The Odin Project](https://www.theodinproject.com/) assignment at [Project: Shopping Cart](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart).
 
-**Shopping Cart** project is a front-end website for e-commerce with cart management.
+**Shopping Cart** project is an e-commerce front-end website with cart management.
 
 ## Table of Contents
-- Installation & Setup
-- Features
-- Tech Stacks
-- Result
+- [Installation & Setup](#installation--setup-️)
+- [Features](#features-)
+- [Tech Stacks](#tech-stacks-)
+- [Result](#result)
  
-## Installation & Setup
+## Installation & Setup ⚙️
+> ![IMPORTANT]
+> You're required to have `Node.js` to run this project
+
 1. Clone the repository
 ```bash
 git clone -b main https://github.com/Ca-ri-ssa/shopping-cart-top.git
@@ -18,6 +21,25 @@ git clone -b main https://github.com/Ca-ri-ssa/shopping-cart-top.git
 ```bash
 npm install
 ```
+3. Now, you can run it!
+```bash
+npm run dev
+```
 
-## Features
-1. Search & filter for products.
+## Features ✨
+- [x] Display products in Home page.
+- [x] Display product details in Product Detail page.
+- [x] Search products & filter by their categories.
+- [x] Add product to cart in its Product Detail page.
+- [x] Update or remove cart item by its product in Product Detail page.
+- [x] Remove cart item in Cart page.
+
+## Tech Stacks 🔨
+|         Layer        |   Technology   | Purpose |
+| :------------------- | :------------: | :------ |
+|     **Front-End**    |   Vite, React  |  |
+| **State Management** |   Context API  | |
+|     **Back-End**     | Fake Store API | |
+|     **Database**     | Local Storage  | |
+
+## Result
