@@ -10,7 +10,7 @@ This **Shopping Cart** project is built for [The Odin Project](https://www.theod
 - [Result](#result)
  
 ## Installation & Setup ⚙️
-> ![IMPORTANT]
+> [!IMPORTANT]
 > You're required to have `Node.js` to run this project
 
 1. Clone the repository
