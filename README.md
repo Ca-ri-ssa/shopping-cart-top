@@ -43,10 +43,18 @@ npm run dev
 |     **Database**     | Local Storage  |
 
 ## Result
+Shopping Cart allows users to search product and filter it by its category in `Home` page.
+
 <img src="demo/screenrec-home-page.gif">
 
-<img src="demo/screenrec-project-detail.gif">
+The detail of the product can be viewed by clicking on any product card. From the `Product Detail` page, users can also add product directly to cart.
+
+<img src="demo/screenrec-product-detail.gif">
+
+On the `Cart` page, users can view a summary of all cart items (total item count & subtotal). User can also remove cart items directly from this page.
 
 <img src="demo/screenrec-removeitem1.gif">
+
+Users can also instantly remove product from their cart on the `Product Detail` page.
 
 <img src="demo/screenrec-removeitem2.gif">
