@@ -7,7 +7,7 @@ This **Shopping Cart** project is built for [The Odin Project](https://www.theod
 - [Installation & Setup](#installation--setup-️)
 - [Features](#features-)
 - [Tech Stacks](#tech-stacks-)
-- [Result](#result)
+- [Result](#result-)
  
 ## Installation & Setup ⚙️
 > [!IMPORTANT]
@@ -42,7 +42,7 @@ npm run dev
 |     **Back-End**     | Fake Store API (https://fakestoreapi.com) |
 |     **Database**     | Local Storage  |
 
-## Result
+## Result 📦
 Shopping Cart allows users to search product and filter it by its category in `Home` page.
 
 <img src="demo/screenrec-home-page.gif">
