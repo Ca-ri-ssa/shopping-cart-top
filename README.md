@@ -47,7 +47,6 @@ npm run dev
 2. Open project detail (try zoom image product, add (and update or remove *optional*) to cart)
 3. Open Cart Page (try update & remove item)
 
-<figure>
-    <img src="https://i.pinimg.com/originals/7b/83/7d/7b837d4c0afbba735dd6373a7772645f.gif">
-    <figcaption style="text-align: center">This image caption</figcaption>
-</figure>
+| <img src="https://i.pinimg.com/originals/7b/83/7d/7b837d4c0afbba735dd6373a7772645f.gif"> |
+| :----:|
+| test |
