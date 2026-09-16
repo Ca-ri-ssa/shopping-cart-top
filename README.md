@@ -43,10 +43,10 @@ npm run dev
 |     **Database**     | Local Storage  |
 
 ## Result
-1. Show Home Page display (try searching product and filter)
-2. Open project detail (try zoom image product, add (and update or remove *optional*) to cart)
-3. Open Cart Page (try update & remove item)
+<img src="demo/screenrec-home-page.gif">
 
-| <img src="https://i.pinimg.com/originals/7b/83/7d/7b837d4c0afbba735dd6373a7772645f.gif"> |
-| :----:|
-| test |
+<img src="demo/screenrec-project-detail.gif">
+
+<img src="demo/screenrec-removeitem1.gif">
+
+<img src="demo/screenrec-removeitem2.gif">
