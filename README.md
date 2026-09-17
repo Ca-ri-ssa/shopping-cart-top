@@ -49,12 +49,12 @@ Shopping Cart allows users to search product and filter it by its category in `H
 
 The detail of the product can be viewed by clicking on any product card. From the `Product Detail` page, users can also add product directly to cart.
 
-<img src="demo/screenrec-product-detail.gif">
+<img src="demo/screenrec-product-detail-page.gif">
 
 On the `Cart` page, users can view a summary of all cart items (total item count & subtotal). User can also remove cart items directly from this page.
 
-<img src="demo/screenrec-removeitem1.gif">
+<img src="demo/screenrec-cart-page-1.gif">
 
 Users can also instantly remove product from their cart on the `Product Detail` page.
 
-<img src="demo/screenrec-removeitem2.gif">
+<img src="demo/screenrec-cart-page-2.gif">

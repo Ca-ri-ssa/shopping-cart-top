@@ -3,7 +3,6 @@ import ProductContainer from "../components/ProductContainer";
 import { ProductContext } from "../context/ProductContext";
 import NewsTicker from "../components/NewsTicker";
 
-// TODO: put loading and error mechanism
 const HomePage = () => {
     const { products, loading, error } = useContext(ProductContext);
 
