@@ -47,7 +47,7 @@ Shopping Cart allows users to search product and filter it by its category in `H
 
 <img src="demo/screenrec-home-page.gif">
 
-The detail of the product can be viewed by clicking on any product card. From the `Product Detail` page, users can also add product directly to cart.
+The detail of the product can be viewed by clicking on any product card. From the `Product Detail` page, users can also add products directly to cart. To change a product's quantity, users must update it on its `Product Detail` page.
 
 <img src="demo/screenrec-product-detail-page.gif">
 
