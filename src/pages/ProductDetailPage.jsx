@@ -38,7 +38,7 @@ const ProductDetailPage = () => {
     if(loading) {
          return (
             <section id="no-page">
-                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '16px' }}>
+                <div className="loading-msg">
                     <div className="loader"></div>
                     <h1>Loading product...</h1>
                 </div>
@@ -49,7 +49,7 @@ const ProductDetailPage = () => {
     if(error) {
          return (
             <section id="no-page">
-                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '16px', textAlign: 'center' }}>
                     <h1 style={{ color: 'var(--color-error)' }}>Error: {error}</h1>
                 </div>
             </section>
@@ -114,7 +114,7 @@ const ProductDetailPage = () => {
     return (
         <>
          <section id="product-detail">
-            <div className="product-img-container"
+            <div className="product-detail-img"
             onMouseMove={handleMouseMove}
             onMouseLeave={handleMouseLeave}>
                 <img ref={imgRef} src={productDetail.image} alt={productDetail.title} />

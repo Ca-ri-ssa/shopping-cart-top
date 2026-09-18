@@ -76,7 +76,7 @@ const HomePage = () => {
                 </div>
 
                 { loading && (
-                    <div style={{ display: 'flex', flexDirection: 'row', justifyContent: "center", alignItems: 'center', gap: '16px', marginTop: '20px' }}>
+                    <div className="loading-msg">
                         <div className="loader"></div>
                         <h1>Loading product...</h1>
                     </div>

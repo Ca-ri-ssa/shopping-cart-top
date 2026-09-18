@@ -140,10 +140,32 @@ h1, h2, h3, p {
   box-shadow: var(--container-box-shadow);
 }
 
+.product-container-img {
+  width: 100%;
+  max-width: 100px;
+  min-width: 50px;
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  padding: 0;
+  box-sizing: border-box;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-container-img img {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .product-grid {
   display: grid;
   gap: 16px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .search-field {
@@ -181,7 +203,7 @@ h1, h2, h3, p {
   align-items: flex-start;
 }
 
-.product-img-container {
+.product-detail-img {
   width: 600px;
   height: 400px;
   background-color: white;
@@ -195,7 +217,7 @@ h1, h2, h3, p {
   justify-content: center;
 }
 
-.product-img-container img {
+.product-detail-img img {
   width: 100%;
   height: 100%;
   object-position: center;
@@ -205,7 +227,7 @@ h1, h2, h3, p {
   transition: transform 0.3s ease-out;
 }
 
-.product-img-container img:hover {
+.product-detail-img img:hover {
   transform: scale(2);
   cursor: zoom-in;
 }
@@ -307,6 +329,7 @@ h1, h2, h3, p {
   flex-direction: column;
   gap: 20px;
   min-height: 77vh;
+  text-align: center;
 }
 
 .cart-container {
@@ -426,14 +449,28 @@ footer {
   animation: spin 1s linear infinite;
 }
 
+.loading-msg {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
 
 @media (width < 40rem) {
+  .product-container {
+    padding: 16px;
+  }
+
   .product-grid {
-    grid-template-columns: repeat(1, 1fr);
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   #cart {
@@ -508,12 +545,20 @@ footer {
   }
 
   body {
-    padding-bottom: 72px;
+    padding-bottom: 71px;
   }
 
   footer {
     flex-wrap: wrap;
     padding: 20px 20px 40px 20px;
     gap: 20px;
+  }
+
+  #no-page {
+    padding-inline: 20px;
+  }
+
+  .loading-msg {
+    flex-direction: column;
   }
 }
